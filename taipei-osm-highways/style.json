@@ -1,0 +1,300 @@
+{
+  "version": 8,
+  "name": "Custom Vector Tiles",
+  "center": [121.54, 25.04],
+  "zoom": 12,
+  "bearing": 0,
+  "pitch": 0,
+  "sources": {
+    "tiles": {
+      "maxzoom": 14,
+      "type": "vector",
+      "url": "pmtiles://http://127.0.0.1:8080/data/highways.pmtiles",
+      "attribution": "&copy; <a href=\"https://github.com/YuChunTsao\" target=\"_blank\">YuChunTsao</a> &copy; <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\">OpenStreetMap contributors</a>"
+    }
+  },
+  "sprite": "https://yuchuntsao.github.io/spritezero-cli/sprites/sprite",
+  "glyphs": "https://yuchuntsao.github.io/fonts/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "roads-footway",
+      "type": "line",
+      "source": "tiles",
+      "source-layer": "highways",
+      "filter": ["all", ["==", "type", "footway"]],
+      "layout": { "line-cap": "round", "line-join": "round" },
+      "paint": {
+        "line-color": {
+          "stops": [
+            [13, "rgba(220, 220, 220, 1)"],
+            [17, "rgba(195, 195, 195, 1)"]
+          ]
+        },
+        "line-dasharray": {
+          "stops": [
+            [13, [1, 1]],
+            [15, [3, 3]],
+            [18, [5, 5]]
+          ]
+        },
+        "line-width": 1
+      }
+    },
+    {
+      "id": "roads-streets-casing",
+      "type": "line",
+      "source": "tiles",
+      "source-layer": "highways",
+      "minzoom": 0,
+      "filter": [
+        "all",
+        ["in", "type", "service", "residential", "unclassified"]
+      ],
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-blur": 0.5,
+        "line-color": {
+          "stops": [
+            [13, "rgba(220, 220, 220, 1)"],
+            [18, "rgba(140, 140, 140, 1)"]
+          ]
+        },
+        "line-width": {
+          "stops": [
+            [13, 2],
+            [18, 11]
+          ]
+        }
+      }
+    },
+    {
+      "id": "roads-streets",
+      "type": "line",
+      "source": "tiles",
+      "source-layer": "highways",
+      "minzoom": 0,
+      "filter": [
+        "all",
+        ["in", "type", "service", "residential", "unclassified"]
+      ],
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-blur": 0.5,
+        "line-color": "rgba(255, 255, 255, 1)",
+        "line-width": {
+          "stops": [
+            [13, 1],
+            [18, 10]
+          ]
+        }
+      }
+    },
+    {
+      "id": "roads-secondary-tertiary-casing",
+      "type": "line",
+      "source": "tiles",
+      "source-layer": "highways",
+      "minzoom": 0,
+      "filter": ["all", ["in", "type", "secondary", "tertiary"]],
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": {
+          "stops": [
+            [10, "rgba(255, 255, 255, 0)"],
+            [12, "rgba(150, 150, 150, 1)"]
+          ]
+        },
+        "line-width": {
+          "stops": [
+            [10, 1],
+            [12, 3],
+            [14, 5],
+            [16, 8],
+            [18, 17]
+          ]
+        }
+      }
+    },
+    {
+      "id": "roads-secondary-tertiary",
+      "type": "line",
+      "source": "tiles",
+      "source-layer": "highways",
+      "minzoom": 0,
+      "filter": ["all", ["in", "type", "secondary", "tertiary"]],
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": {
+          "stops": [
+            [10, "rgba(230, 230, 230, 0)"],
+            [12, "rgba(245, 245, 245, 1)"]
+          ]
+        },
+        "line-width": {
+          "stops": [
+            [10, 1],
+            [12, 2],
+            [14, 4],
+            [16, 7],
+            [18, 15]
+          ]
+        }
+      }
+    },
+    {
+      "id": "roads-trunk-primary-casing",
+      "type": "line",
+      "source": "tiles",
+      "source-layer": "highways",
+      "minzoom": 0,
+      "filter": [
+        "all",
+        ["in", "type", "trunk", "primary", "tunk_link", "primary_link"]
+      ],
+      "layout": {
+        "line-cap": "butt",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-blur": 0.5,
+        "line-color": "rgba(150, 150, 150, 1)",
+        "line-width": {
+          "stops": [
+            [8, 1],
+            [10, 3],
+            [14, 7],
+            [18, 20]
+          ]
+        }
+      }
+    },
+    {
+      "id": "roads-trunk-primary",
+      "type": "line",
+      "source": "tiles",
+      "source-layer": "highways",
+      "minzoom": 0,
+      "filter": [
+        "all",
+        ["in", "type", "trunk", "primary", "tunk_link", "primary_link"]
+      ],
+      "layout": {
+        "line-cap": "butt",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-blur": 0.5,
+        "line-color": {
+          "stops": [
+            [8, "rgba(230, 230, 230, 1)"],
+            [14, "rgba(243, 243, 243, 1)"]
+          ]
+        },
+        "line-width": {
+          "stops": [
+            [8, 1],
+            [10, 3],
+            [14, 6],
+            [19, 20]
+          ]
+        }
+      }
+    },
+    {
+      "id": "roads-motorway-casing",
+      "type": "line",
+      "source": "tiles",
+      "source-layer": "highways",
+      "minzoom": 0,
+      "filter": ["all", ["in", "type", "motorway", "motorway_link"]],
+      "layout": {
+        "line-cap": "butt",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-blur": 0.5,
+        "line-color": {
+          "stops": [
+            [6, "rgba(170, 170, 170, 1)"],
+            [14, "rgba(125, 125, 125, 1)"]
+          ]
+        },
+        "line-width": {
+          "stops": [
+            [6, 2],
+            [10, 4],
+            [14, 8],
+            [18, 24]
+          ]
+        }
+      }
+    },
+    {
+      "id": "roads-motorway",
+      "type": "line",
+      "source": "tiles",
+      "source-layer": "highways",
+      "filter": ["all", ["in", "type", "motorway", "motorway_link"]],
+      "layout": {
+        "line-cap": "butt",
+        "line-join": "round",
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-blur": 0.5,
+        "line-color": {
+          "stops": [
+            [6, "rgba(175, 175, 175, 1)"],
+            [10, "rgba(230, 230, 230, 1)"],
+            [14, "rgba(243, 243, 243, 1)"]
+          ]
+        },
+        "line-width": {
+          "stops": [
+            [6, 1],
+            [10, 3],
+            [14, 7],
+            [18, 22]
+          ]
+        }
+      }
+    },
+    {
+      "id": "roads-label",
+      "type": "symbol",
+      "source": "tiles",
+      "source-layer": "highways",
+      "minzoom": 0,
+      "filter": ["all"],
+      "layout": {
+        "text-field": "{name}",
+        "visibility": "visible",
+        "text-font": ["Open Sans Regular"],
+        "text-size": 12,
+        "symbol-placement": "line-center",
+        "text-pitch-alignment": "viewport",
+        "text-rotation-alignment": "map"
+      },
+      "paint": { "text-color": "rgba(100, 100, 100, 1)" }
+    }
+  ]
+}

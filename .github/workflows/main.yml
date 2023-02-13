@@ -1,0 +1,18 @@
+name: Host demo
+on: push
+
+jobs:
+  update-url:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Update url (github page domain)
+        run: |
+          sed -i 's+http://127.0.0.1:8080+https://yuchuntsao.github.io/custom-vector-tiles/taipei-osm-highways+g' ./taipei-osm-highways/index.html
+          sed -i 's+http://127.0.0.1:8080+https://yuchuntsao.github.io/custom-vector-tiles/taipei-osm-highways+g' ./taipei-osm-highways/style.json
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.DEPLOY_TOKEN }}
+          publish_dir: ./
